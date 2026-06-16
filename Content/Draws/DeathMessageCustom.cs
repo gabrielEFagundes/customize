@@ -1,31 +1,33 @@
 namespace customize.Content.Draws;
 
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Graphics;
 using Terraria;
+using Terraria.GameContent;
+using Terraria.Localization;
 using Terraria.ModLoader;
-using MonoMod.Cil;
-using Mono.Cecil.Cil;
 
 public class DeathMessageCustom : ModSystem
 {
-    public override void Load()
+    // BRO I'M LOWKEY SO HAPPY I FIGURED THIS SHIT OUT
+    public override void OnLocalizationsLoaded()
     {
-        IL_Main.DrawInterface += PatchDeathText;
+        Lang.inter[38] = LocalizedText.Empty;
     }
 
-    public override void Unload()
+    public override void PostDrawInterface(SpriteBatch spriteBatch)
     {
-        IL_Main.DrawInterface -= PatchDeathText;
-    }
+        if(!Main.LocalPlayer.dead) return;
 
-    private void PatchDeathText(ILContext il)
-    {
-        var cursor = new ILCursor(il);
+        string text = "Don't ragequit.";
+        DynamicSpriteFont font = FontAssets.DeathText.Value;
+        Vector2 pos = new Vector2(
+            Main.screenWidth / 2f - font.MeasureString(text).X / 2f,
+            Main.screenHeight / 2f - 60f
+        );
 
-        if(cursor.TryGotoNext(i => i.MatchLdstr("You were slain...")))
-        {
-            cursor.Remove();
-            cursor.Emit(OpCodes.Ldstr, "Don't ragequit."); // lame
-        }
+        spriteBatch.DrawString(font, text, pos, Main.LocalPlayer.GetDeathAlpha(Color.Transparent));
     }
 
 }
