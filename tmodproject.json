@@ -1,0 +1,6 @@
+{
+  "rootNamespace": "customize",
+  "fileMap": {
+    "Content\\Draws\\DeathMessageCustom.cs": "customize.Content.Draws"
+  }
+}
