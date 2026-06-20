@@ -1,1 +1,12 @@
+Configs: {
+	CustomizeConfig: {
+		DisplayName: Customization Options
 
+		deathText: {
+			Label: Death Text
+			Tooltip: The text that appears in your screen when you die. Leave it blank to prevent any text from showing
+		}
+	}
+}
+
+"Keybinds.[TEST] kill player.DisplayName": "[ T E S T] kill player"
