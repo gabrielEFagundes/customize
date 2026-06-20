@@ -2,6 +2,7 @@ namespace customize.Content.Draws;
 
 using System.Collections.Generic;
 using customize.Content.Config;
+using customize.Content.Monitors;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Graphics;
@@ -21,7 +22,8 @@ using Terraria.UI;
 public class DeathMessageCustom : ModSystem
 {
 
-    public string contentOpt = ModContent.GetInstance<CustomizeConfig>().deathText;
+    string deathStr;
+
     public override void OnLocalizationsLoaded()
     {
         Lang.inter[38] = LocalizedText.Empty;
@@ -29,25 +31,28 @@ public class DeathMessageCustom : ModSystem
 
     public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
     {
-        if(!Main.LocalPlayer.dead) return;
-
         int deathTextIndex = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Death Text"));
         if(deathTextIndex != -1)
         {
             layers.RemoveAt(deathTextIndex);
             
-            layers.Insert(deathTextIndex, new LegacyGameInterfaceLayer("Vanilla: Death Text", 
+            layers.Insert(deathTextIndex, new LegacyGameInterfaceLayer("Customize: Death Text", 
                 delegate
                 {
+                    if(!Main.LocalPlayer.dead) return true;
+
+                    deathStr = Main.LocalPlayer.GetModPlayer<MonitorPlayerDeath>().contentOpt ?? "You were slain... (Couldn't change the death msg)";
+                    
                     DynamicSpriteFont font = FontAssets.DeathText.Value;
                     Vector2 pos = new(
-                        Main.screenWidth / 2f - font.MeasureString(contentOpt).X / 2f,
+                        Main.screenWidth / 2f - font.MeasureString(deathStr).X / 2f,
                         Main.screenHeight / 2f - 60f
                     );
 
-                    Main.spriteBatch.DrawString(font, contentOpt, pos, Main.LocalPlayer.GetDeathAlpha(Color.Transparent));
+                    Main.spriteBatch.DrawString(font, deathStr, pos, Main.LocalPlayer.GetDeathAlpha(Color.Transparent));
                     return true;
-                }
+                },
+                InterfaceScaleType.UI
             ));
         }
     }

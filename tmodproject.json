@@ -6,6 +6,7 @@
     "Customize.cs": "customize",
     "Content\\Config\\CustomizeConfig.cs": "customize.Content.Config",
     "Content\\.Test\\KillPlayer.cs": "customize.Content._Test",
-    "Content\\Test\\KillPlayer.cs": "customize.Content.Test"
+    "Content\\Test\\KillPlayer.cs": "customize.Content.Test",
+    "Content\\Monitors\\MonitorPlayerDeath.cs": "customize.Content.Monitors"
   }
 }
