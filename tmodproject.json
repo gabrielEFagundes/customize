@@ -1,6 +1,9 @@
 {
   "rootNamespace": "customize",
   "fileMap": {
-    "Content\\Draws\\DeathMessageCustom.cs": "customize.Content.Draws"
+    "Content\\Draws\\DeathMessageCustom.cs": "customize.Content.Draws",
+    "Content\\UI\\UiSystem.cs": "customize.Content.UI",
+    "Customize.cs": "customize",
+    "Content\\Config\\CustomizeConfig.cs": "customize.Content.Config"
   }
 }
