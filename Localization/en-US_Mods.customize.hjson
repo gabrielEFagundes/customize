@@ -8,3 +8,5 @@ Configs: {
 		}
 	}
 }
+
+"Keybinds.[TEST] kill player.DisplayName": "[ T E S T] kill player"

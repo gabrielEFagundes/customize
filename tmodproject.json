@@ -4,6 +4,8 @@
     "Content\\Draws\\DeathMessageCustom.cs": "customize.Content.Draws",
     "Content\\UI\\UiSystem.cs": "customize.Content.UI",
     "Customize.cs": "customize",
-    "Content\\Config\\CustomizeConfig.cs": "customize.Content.Config"
+    "Content\\Config\\CustomizeConfig.cs": "customize.Content.Config",
+    "Content\\.Test\\KillPlayer.cs": "customize.Content._Test",
+    "Content\\Test\\KillPlayer.cs": "customize.Content.Test"
   }
 }
