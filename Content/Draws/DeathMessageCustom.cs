@@ -39,7 +39,10 @@ public class DeathMessageCustom : ModSystem
                     if(!Main.LocalPlayer.dead) return true;
 
                     deathStr = Main.LocalPlayer.GetModPlayer<MonitorPlayerDeath>().deathStringOption ?? "You were slain... (Couldn't change the death msg)";
-                    coinsLostStr = "dropped " + Main.LocalPlayer.lostCoinString; // concat it with something or it just shows the coins lost
+                    coinsLostStr = "";
+
+                    if(!string.IsNullOrEmpty(Main.LocalPlayer.lostCoinString))
+                        coinsLostStr = "dropped " + Main.LocalPlayer.lostCoinString; // concat it with something or it just shows the coins lost
 
                     int secondsLeft = Main.LocalPlayer.respawnTimer / 60;
 
